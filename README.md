@@ -1,5 +1,6 @@
 # JFuture Nanomsg
 [ ![Download](https://api.bintray.com/packages/republicwealth/nanomsg/jfuture-nanomsg/images/download.svg) ](https://bintray.com/republicwealth/nanomsg/jfuture-nanomsg/_latestVersion)
+<a href='https://bintray.com/republicwealth/nanomsg/jfuture-nanomsg/view?source=watch' alt='Get automatic notifications about new "jfuture-nanomsg" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
 
 A fork of [jnanomsg](http://niwinz.github.io/jnanomsg/) that focuses only on the Java bindings for nanomsg 
 (build on top of JNA). Basically:
