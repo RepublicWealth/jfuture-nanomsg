@@ -10,3 +10,8 @@ pom.xml.asc
 *.swp
 /.lein-*
 /.nrepl-port
+
+/.idea
+/.gradle
+/*.iml
+/build

@@ -356,7 +356,7 @@ public class Client {
 ----
 
 
-=== Socket types
+=== au.com.republicwealth.nanomsg.scala.Socket types
 
 ==== PubSub Sockets
 
@@ -433,10 +433,10 @@ public class EchoServer {
 
         while (true) {
             byte[] receivedData = sock.recvBytes();
-            sock.sendBytes(receivedData);
+            sock.send(receivedData);
         }
 
-        sock.close()
+        sock.close();
     }
 }
 ----

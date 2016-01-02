@@ -1,0 +1,27 @@
+task bintrayDelete << {
+    def deleteUrl = ['curl', '-u',
+                     bintrayUser + ':' + bintrayApiKey,
+                     '-X',
+                     'DELETE',
+                     "https://api.bintray.com/packages/trunkplatform/microservices/stream-service/versions/${version}/"].execute()
+    println("delete: " + deleteUrl.text)
+}
+
+bintray {
+    user = bintrayUser
+    key = bintrayApiKey
+
+    dryRun = false //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+        repo = 'nanomsg'
+        userOrg = 'republicwealth'
+        name = 'jfuture-nanomsg'
+        desc = 'jnanomsg fork using Java Futures'
+        websiteUrl = ''
+        issueTrackerUrl = 'https://github.com/republicwealth/jfuture-nanomsg/issues'
+        vcsUrl = 'https://github.com/republicwealth/jano.git'
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+    }
+}

@@ -1,7 +1,13 @@
-# jnanomsg
+# JFuture Nanomsg
 
-Clojure and Java bindings for nanomsg (build on top of JNA)
+A fork of [jnanomsg](http://niwinz.github.io/jnanomsg/) that focuses only on the Java bindings for nanomsg 
+(build on top of JNA). Basically:
+ 
+   - remove Clojure code DONE
+   - replace Leiningen with Gradle DONE
+   - add JUnit tests. DOING
+   - use Java8 CompletableFutures or NIO (which wraps epoll under the hood for Linux) for Aysnc Sockets. NOT STARTED
 
 (http://nanomsg.org/)
 
-- Documentation: http://niwinz.github.io/jnanomsg/latest/
+- Documentation: available via unit tests

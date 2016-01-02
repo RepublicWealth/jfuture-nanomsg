@@ -1,12 +1,10 @@
 package nanomsg;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
-import nanomsg.NativeLibrary;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public final class Nanomsg {

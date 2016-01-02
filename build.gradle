@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id "com.jfrog.bintray" version "1.4"
+}
+
+group 'jnanomsg'
+version '0.4.3'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven { url "https://clojars.org/repo" }
+    mavenLocal()
+}
+
+dependencies{
+    compile "net.java.dev.jna:jna:${jnaVersion}"
+    compile "org.scala-lang:scala-library:${scalaVersion}"
+
+    testCompile "junit:junit:4.11"
+}
+
+task helloJava(type: JavaExec, dependsOn: classes) {
+    main = 'HelloJava'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
+apply from: 'gradle/bintray.gradle'
