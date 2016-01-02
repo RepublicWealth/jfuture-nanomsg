@@ -1,30 +1,59 @@
 plugins {
     id 'java'
+    id 'maven'
+    id 'maven-publish'
     id "com.jfrog.bintray" version "1.4"
 }
 
-group 'jnanomsg'
-version '0.4.3'
+group 'au.com.republicwealth.jfuture-nanomsg'
+version '0.4.3-1'
 
 sourceCompatibility = 1.8
 
 repositories {
     jcenter()
-    maven { url "https://clojars.org/repo" }
     mavenLocal()
 }
 
 dependencies{
     compile "net.java.dev.jna:jna:${jnaVersion}"
-    compile "org.scala-lang:scala-library:${scalaVersion}"
 
     testCompile "junit:junit:4.11"
 }
 
-task helloJava(type: JavaExec, dependsOn: classes) {
-    main = 'HelloJava'
-    classpath sourceSets.main.runtimeClasspath
-    classpath configurations.runtime
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test'
+        }
+    }
+}
+
+// custom tasks for creating source/test jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {
