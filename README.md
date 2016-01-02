@@ -1,4 +1,5 @@
 # JFuture Nanomsg
+[![Build Status](https://snap-ci.com/RepublicWealth/jfuture-nanomsg/branch/master/build_image)](https://snap-ci.com/RepublicWealth/jfuture-nanomsg/branch/master)
 [ ![Download](https://api.bintray.com/packages/republicwealth/nanomsg/jfuture-nanomsg/images/download.svg) ](https://bintray.com/republicwealth/nanomsg/jfuture-nanomsg/_latestVersion)
 <a href='https://bintray.com/republicwealth/nanomsg/jfuture-nanomsg/view?source=watch' alt='Get automatic notifications about new "jfuture-nanomsg" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
 
