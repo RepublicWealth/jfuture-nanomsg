@@ -7,10 +7,10 @@ import nanomsg.Socket;
 
 public class BusSocket extends Socket {
   public BusSocket(Domain domain) {
-    super(domain, SocketType.NN_BUS);
+    super(domain, SocketType.BUS);
   }
 
   public BusSocket() {
-    this(Domain.AF_SP);
+    this(Domain.SP);
   }
 }

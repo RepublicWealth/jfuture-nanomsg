@@ -7,10 +7,10 @@ import nanomsg.Socket;
 
 public class RepSocket extends Socket {
   public RepSocket(Domain domain) {
-    super(domain, SocketType.NN_REP);
+    super(domain, SocketType.REP);
   }
 
   public RepSocket() {
-    this(Domain.AF_SP);
+    this(Domain.SP);
   }
 }

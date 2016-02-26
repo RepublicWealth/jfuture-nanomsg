@@ -1,9 +1,9 @@
 package nanomsg;
 
+import com.google.common.collect.ImmutableMap;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -25,7 +25,7 @@ public final class Nanomsg {
   }
 
   private static final Map<String, Integer> getSymbols() {
-    HashMap<String, Integer> result = new HashMap<String, Integer>();
+    ImmutableMap.Builder<String, Integer> symbolsBuilder = new ImmutableMap.Builder<>();
 
     int index = 0;
     while (true) {
@@ -36,46 +36,58 @@ public final class Nanomsg {
         break;
       }
 
-      result.put(ptr.getString(0), valueRef.getValue());
+      symbolsBuilder.put(ptr.getString(0), valueRef.getValue());
       index += 1;
     }
 
-    return result;
+    return symbolsBuilder.build();
   }
 
-  public static final Map<String, Integer> nn_symbols = Nanomsg.getSymbols();
+  public static final Map<String, Integer> symbols = Nanomsg.getSymbols();
 
   public enum Domain {
-    AF_SP,
-    AF_SP_RAW;
+    SP("AF_SP"),
+    SP_RAW("AF_SP_RAW");
+
+    private final Integer value;
+
+    Domain(String name) {
+      this.value = symbols.get(name);
+    }
 
     public Integer value() {
-      return nn_symbols.get(name());
+      return value;
     }
   }
 
   public enum SocketType {
 
     /* PubSub */
-    NN_PUB,
-    NN_SUB,
+    PUB("NN_PUB"),
+    SUB("NN_SUB"),
 
     /* ReqRep */
-    NN_REQ,
-    NN_REP,
+    REQ("NN_REQ"),
+    REP("REP"),
 
     /* Pipeline */
-    NN_PUSH,
-    NN_PULL,
+    PUSH("NN_PUSH"),
+    PULL("NN_PULL"),
 
     /* Bus */
-    NN_BUS,
+    BUS("NN_BUS"),
 
     /* Pair */
-    NN_PAIR;
+    PAIR("NN_PAIR");
+
+    private final Integer value;
+
+    SocketType(String name) {
+      this.value = symbols.get(name);
+    }
 
     public Integer value() {
-      return nn_symbols.get(name());
+      return value;
     }
   }
 
@@ -88,8 +100,16 @@ public final class Nanomsg {
     NN_RCVFD,
     NN_RCVTIMEO;
 
+//    NN_SUB_UNSUBSCRIBE,
+//    NN_REQ_RESEND_IVL,
+//    NN_SUB_SUBSCRIBE,
+//    NN_SNDTIMEO,
+//    NN_SNDFD,
+//    NN_RCVFD,
+//    NN_RCVTIMEO;
+
     public Integer value() {
-      return nn_symbols.get(name());
+      return symbols.get(name());
     }
   }
 
@@ -99,7 +119,7 @@ public final class Nanomsg {
     NN_DONTWAIT;
 
     public Integer value() {
-      return name().equals("NN_MSG") ? -1 : nn_symbols.get(name());
+      return name().equals("NN_MSG") ? -1 : symbols.get(name());
     }
   }
 
@@ -111,7 +131,7 @@ public final class Nanomsg {
     ECONNREFUSED;
 
     public Integer value() {
-      return nn_symbols.get(name());
+      return symbols.get(name());
     }
   }
 }

@@ -6,10 +6,10 @@ import nanomsg.Socket;
 
 public class PubSocket extends Socket {
   public PubSocket(Domain domain) {
-    super(domain, SocketType.NN_PUB);
+    super(domain, SocketType.PUB);
   }
 
   public PubSocket() {
-    this(Domain.AF_SP);
+    this(Domain.SP);
   }
 }

@@ -6,10 +6,10 @@ import nanomsg.Socket;
 
 public class PullSocket extends Socket {
   public PullSocket(Domain domain) {
-    super(domain, SocketType.NN_PULL);
+    super(domain, SocketType.PULL);
   }
 
   public PullSocket() {
-    this(Domain.AF_SP);
+    this(Domain.SP);
   }
 }

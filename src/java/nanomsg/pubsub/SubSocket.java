@@ -14,11 +14,11 @@ import java.io.UnsupportedEncodingException;
 
 public class SubSocket extends Socket implements ISubscriptionSocket {
   public SubSocket(Domain domain) {
-    super(domain, Nanomsg.SocketType.NN_SUB);
+    super(domain, Nanomsg.SocketType.SUB);
   }
 
   public SubSocket() {
-    this(Domain.AF_SP);
+    this(Domain.SP);
   }
 
   @Override
@@ -44,9 +44,9 @@ public class SubSocket extends Socket implements ISubscriptionSocket {
     final Memory mem = new Memory(patternBytes.length);
     mem.write(0, patternBytes, 0, patternBytes.length);
           
-    NativeLibrary.nn_setsockopt(socket, SocketType.NN_SUB.value(), SocketOption.NN_SUB_SUBSCRIBE.value(),
+    NativeLibrary.nn_setsockopt(socket, SocketType.SUB.value(), SocketOption.NN_SUB_SUBSCRIBE.value(),
                                       mem, length);
-          // NativeLibrary.nn_setsockopt(socket, NN_SUB.value(), NN_SUB_SUBSCRIBE.value(),
+          // NativeLibrary.nn_setsockopt(socket, SUB.value(), NN_SUB_SUBSCRIBE.value(),
           // null, 0);
   }
     
@@ -72,7 +72,7 @@ public class SubSocket extends Socket implements ISubscriptionSocket {
     final Memory mem = new Memory(patternBytes.length);
     mem.write(0, patternBytes, 0, patternBytes.length);
 
-    NativeLibrary.nn_setsockopt(socket, SocketType.NN_SUB.value(), SocketOption.NN_SUB_UNSUBSCRIBE.value(),
+    NativeLibrary.nn_setsockopt(socket, SocketType.SUB.value(), SocketOption.NN_SUB_UNSUBSCRIBE.value(),
                                 mem, patternBytes.length);
   }
 }
